@@ -39,19 +39,19 @@ public class JwtUtil {
     private Long refreshExpiration;
 
     public JwtUtil(@Value("${jwt.secret}") String secret) {
-        System.out.println("✅ JwtUtil 생성자 호출됨");
+        System.out.println("JwtUtil 생성자 호출됨");
 
         try {
             if (secret == null || secret.length() < 32) {
-                throw new IllegalArgumentException("❌ secret은 최소 32자 이상이어야 합니다.");
+                throw new IllegalArgumentException("secret은 최소 32자 이상이어야 합니다.");
             }
 
             this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-            System.out.println("✅ secretKey 초기화 성공");
+            System.out.println("secretKey 초기화 성공");
 
         } catch (Exception e) {
-            System.out.println("❌ JwtUtil 초기화 중 예외 발생: " + e.getClass().getName() + " - " + e.getMessage());
-            e.printStackTrace();  // 반드시 추가!
+            System.out.println("JwtUtil 초기화 중 예외 발생: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace();
             throw e;
         }
     }

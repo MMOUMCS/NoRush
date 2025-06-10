@@ -4,7 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "refresh_tokens")
+@Document(collection = "refresh_tokens")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

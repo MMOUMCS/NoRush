@@ -1,8 +1,6 @@
 package com.example.norush.service;
 
-import static com.example.norush.exception.AuthExceptionType.INVALID_EMAIL;
-import static com.example.norush.exception.AuthExceptionType.INVALID_PASSWORD;
-import static com.example.norush.exception.AuthExceptionType.INVALID_TOKEN;
+import static com.example.norush.exception.AuthExceptionType.*;
 import static com.example.norush.exception.MemberExceptionType.USER_NOT_FOUND;
 
 import com.example.norush.config.BCryptPasswordEncoder;
@@ -20,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -34,9 +33,19 @@ public class MemberService {
     @Transactional
     public TokenResponse signUp(SignUpRequest request) {
         validateDuplicateEmail(request.email());
+
+        if (!request.password().equals(request.confirmPassword())) {
+            throw new AuthException(PASSWORD_CONFIRM_MISMATCH);
+        }
+
         Member newMember = Member.builder()
                 .email(request.email())
                 .password(encoded(request.password()))
+                .age(request.age())
+                .gender(request.gender())
+                .role("USER")
+                .isValid(true)
+                .favorList(new ArrayList<>())
                 .build();
         Member savedMember = memberRepository.save(newMember);
         String refreshToken = jwtUtil.createRefreshToken(savedMember);

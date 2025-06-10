@@ -16,6 +16,7 @@ public enum AuthExceptionType implements ExceptionType {
     UNSUPPORTED_LOGIN_PROVIDER(Status.BAD_REQUEST, 1009, "지원하지 않는 로그인 제공자입니다"),
     INVALID_EMAIL(Status.BAD_REQUEST, 1010, "이미 사용중인 이메일입니다"),
     ALREADY_JOINED_NORMAL_USER(Status.BAD_REQUEST, 1011, "일반회원으로 이미 가입하여 소셜로그인으로 가입할 수 없습니다"),
+    PASSWORD_CONFIRM_MISMATCH(Status.BAD_REQUEST, 1012, "비밀번호 확인이 일치하지 않습니다")
     ;
 
     private final Status status;
