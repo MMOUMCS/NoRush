@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: norush
+  data:
+    mongodb:
+      uri: mongodb+srv://<username>:<password>@norush-cluster.nrsflle.mongodb.net/norush?retryWrites=true&w=majority&appName=norush-cluster
+      auto-index-creation: true
+
+jwt:
+  secret: qwerasdfzxcvdsafdsaffdasafdfdsafdsafdsafdsasfda
+  access-token-expiration: 86400000
+  refresh-token-expiration: 2592000000
+
