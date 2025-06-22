@@ -11,3 +11,6 @@ jwt:
   access-token-expiration: 86400000
   refresh-token-expiration: 2592000000
 
+ai:
+  prediction:
+    base-url: http://localhost:8000
