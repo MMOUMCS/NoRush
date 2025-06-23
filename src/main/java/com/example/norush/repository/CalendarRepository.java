@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface CalendarRepository extends MongoRepository<Calendar, String> {
 
-    List<Calendar> findByUserId(String userId);
+    List<Calendar> findByUserId(String userId); 
     List<Calendar> findByUserIdAndYearAndMonth(String userId, Integer year, Integer month);
     Optional<Calendar> findByIdAndUserId(String id, String userId);
 }

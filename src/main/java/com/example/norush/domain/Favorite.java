@@ -17,12 +17,12 @@ public class Favorite extends BaseEntity {
     @Id
     private String id;
 
-    private String userId // email?
+    private String userId; // email?
     private String name;
     private String type;
     private String targetId;
     private LocalDateTime createdAt;
-    private string memo;
+    private String memo;
 
     public void update(String name, String type , String targetId, String memo){
         if (name != null){
