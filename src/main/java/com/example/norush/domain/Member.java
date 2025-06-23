@@ -32,6 +32,9 @@ public class Member extends BaseEntity {
     private String gender;
     private String role;
 
+    private String provider; //구글 로그인용
+    private String providerId; // 구글 로그인 유저 고유 id
+
     public void changePassword(String password) {
         this.password = password;
     }
