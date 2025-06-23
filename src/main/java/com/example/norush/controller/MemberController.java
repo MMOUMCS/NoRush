@@ -6,6 +6,8 @@ import com.example.norush.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,6 +30,27 @@ public class MemberController {
     @PostMapping("/refresh")
     public ResponseEntity<TokenResponse> refresh(@RequestBody RefreshTokenRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(memberService.refresh(request));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<MemberResponse> getMyInfo(Authentication authentication) {
+        String email = extractEmail(authentication);
+        MemberResponse response = memberService.getMyInfoByEmail(email);
+        return ResponseEntity.ok(response);
+    }
+
+    private String extractEmail(Authentication authentication) {
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof UserDetails userDetails) {
+            return userDetails.getUsername();
+        }
+
+        if (principal instanceof OAuth2User oauth2User) {
+            return oauth2User.getAttribute("email"); // 필요시 provider마다 분기 가능
+        }
+
+        throw new IllegalStateException("알 수 없는 인증 방식입니다.");
     }
 
 //    @PostMapping("/password")
