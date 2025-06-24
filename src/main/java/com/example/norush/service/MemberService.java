@@ -41,6 +41,7 @@ public class MemberService {
         Member newMember = Member.builder()
                 .email(request.email())
                 .password(encoded(request.password()))
+                .username(request.username())
                 .age(request.age())
                 .gender(request.gender())
                 .role("USER")
