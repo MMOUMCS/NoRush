@@ -3,7 +3,7 @@ spring:
     name: norush
   data:
     mongodb:
-      uri: mongodb+srv://<username>:<password>@norush-cluster.nrsflle.mongodb.net/norush?retryWrites=true&w=majority&appName=norush-cluster
+      uri: mongodb+srv://jeongmin:1234@norush-cluster.nrsflle.mongodb.net/norush?retryWrites=true&w=majority&appName=norush-cluster
       auto-index-creation: true
 
 jwt:
