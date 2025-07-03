@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Gradle 빌드 결과 무시
+/build/
+
+# JAR 파일 무시
+*.jar
